@@ -1,0 +1,97 @@
+---- ps ax | grep bcat ---- service elasticsearch status ---- touch monitorBcat/Garuda ---- touch monitorBcat/Citilink ---- touch monitorBcat/Express ---- touch monitorBcat/Sriwijaya ---- touch monitorBcat/Airasia ---- touch monitorBcat/Lion ---- touch monitorBcat/MonitorAllServer ---- touch monitorBcat/Pluto ---- service elasticsearch start ---- forever list ---- cd ../../../scrapePluto && npm run start:sr ---- cd ../../../scrapeAirbinder && npm run start:aa ---- cd ../../../scrapeAirbinder && npm run start:li ---- cd ../../../scrapePluto && npm run start:pluto ---- {"elasticsearch":"OFF","daemon_garuda":"ON","daemon_citilink":"ON","daemon_express":"ON","daemon_sriwijaya":"OFF","daemon_airasia":"OFF","daemon_lion":"OFF","bin/www abdul":"OFF","time":"23-1-2015 19:55:39"}
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/MonitorAllServer
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Pluto
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Garuda
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Citilink
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Express
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Sriwijaya
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Airasia
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Lion
+
+ps ax | grep redis
+
+Redis OFF and run auto START
+[19841] 23 Jan 19:55:59.680 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+[19841] 23 Jan 19:55:59.681 # Unable to set the max number of files limit to 10032 (Operation not permitted), setting the max clients configuration to 3984.
+[19841] 23 Jan 19:55:59.681 # Opening port 6379: bind: Address already in use
+---- ps ax | grep bcat ---- service elasticsearch status ---- touch monitorBcat/Lion ---- service elasticsearch start ---- forever list ---- cd ../../../scrapePluto && npm run start:sr ---- cd ../../../scrapeAirbinder && npm run start:aa ---- cd ../../../scrapeAirbinder && npm run start:li ---- cd ../../../scrapePluto && npm run start:pluto ---- {"elasticsearch":"OFF","daemon_garuda":"ON","daemon_citilink":"ON","daemon_express":"ON","daemon_sriwijaya":"OFF","daemon_airasia":"OFF","daemon_lion":"OFF","bin/www abdul":"OFF","time":"23-1-2015 19:56:6"}
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/MonitorAllServer
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Pluto
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Garuda
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Citilink
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Express
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Sriwijaya
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Airasia
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Lion
+
+ps ax | grep redis
+
+Redis OFF and run auto START
+[20225] 23 Jan 19:56:31.135 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+[20225] 23 Jan 19:56:31.136 # Unable to set the max number of files limit to 10032 (Operation not permitted), setting the max clients configuration to 3984.
+[20225] 23 Jan 19:56:31.136 # Opening port 6379: bind: Address already in use
+---- ps ax | grep bcat ---- service elasticsearch status ---- touch monitorBcat/Airasia ---- touch monitorBcat/Lion ---- service elasticsearch start ---- forever list ---- cd ../../../scrapePluto && npm run start:sr ---- cd ../../../scrapeAirbinder && npm run start:aa ---- cd ../../../scrapeAirbinder && npm run start:li ---- cd ../../../scrapePluto && npm run start:pluto ---- {"elasticsearch":"OFF","daemon_garuda":"ON","daemon_citilink":"ON","daemon_express":"ON","daemon_sriwijaya":"OFF","daemon_airasia":"OFF","daemon_lion":"OFF","bin/www abdul":"OFF","time":"23-1-2015 19:56:37"}
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/MonitorAllServer
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Pluto
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Garuda
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Citilink
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Express
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Sriwijaya
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Airasia
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Lion
+
+ps ax | grep redis
+
+Redis OFF and run auto START
+[20421] 23 Jan 19:56:53.465 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+[20421] 23 Jan 19:56:53.466 # Unable to set the max number of files limit to 10032 (Operation not permitted), setting the max clients configuration to 3984.
+[20421] 23 Jan 19:56:53.466 # Opening port 6379: bind: Address already in use
+---- ps ax | grep bcat ---- service elasticsearch status ---- service elasticsearch start ---- forever list ---- touch monitorBcat/Airasia ---- touch monitorBcat/Lion ---- cd ../../../scrapePluto && npm run start:sr ---- cd ../../../scrapeAirbinder && npm run start:aa ---- cd ../../../scrapeAirbinder && npm run start:li ---- cd ../../../scrapePluto && npm run start:pluto ---- {"elasticsearch":"OFF","daemon_garuda":"ON","daemon_citilink":"ON","daemon_express":"ON","daemon_sriwijaya":"OFF","daemon_airasia":"OFF","daemon_lion":"OFF","bin/www abdul":"OFF","time":"23-1-2015 19:56:58"}
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/MonitorAllServer
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Pluto
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Garuda
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Citilink
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Express
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Sriwijaya
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Airasia
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Lion
+
+ps ax | grep redis
+
+Redis OFF and run auto START
+[20618] 23 Jan 19:57:15.687 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+[20618] 23 Jan 19:57:15.689 # Unable to set the max number of files limit to 10032 (Operation not permitted), setting the max clients configuration to 3984.
+[20618] 23 Jan 19:57:15.690 # Opening port 6379: bind: Address already in use
+---- ps ax | grep bcat ---- service elasticsearch status ---- touch monitorBcat/Garuda ---- touch monitorBcat/Citilink ---- touch monitorBcat/Express ---- touch monitorBcat/Sriwijaya ---- touch monitorBcat/Airasia ---- touch monitorBcat/Lion ---- touch monitorBcat/MonitorAllServer ---- touch monitorBcat/Pluto ---- service elasticsearch start ---- forever list ---- cd ../../../scrapePluto && npm run start:sr ---- cd ../../../scrapeAirbinder && npm run start:aa ---- cd ../../../scrapeAirbinder && npm run start:li ---- cd ../../../scrapePluto && npm run start:pluto ---- {"elasticsearch":"OFF","daemon_garuda":"ON","daemon_citilink":"ON","daemon_express":"ON","daemon_sriwijaya":"OFF","daemon_airasia":"OFF","daemon_lion":"OFF","bin/www abdul":"OFF","time":"23-1-2015 19:57:21"}
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/MonitorAllServer
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Pluto
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Garuda
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Citilink
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Express
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Sriwijaya
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Airasia
+
+cek -f /opt/lampp/htdocs/projectScrape/scrapePluto/bin/plutoForever/monitorBcat/Lion
+
+ps ax | grep redis
+
+Redis OFF and run auto START
+[21231] 23 Jan 19:57:45.240 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+[21231] 23 Jan 19:57:45.241 # Unable to set the max number of files limit to 10032 (Operation not permitted), setting the max clients configuration to 3984.
+[21231] 23 Jan 19:57:45.241 # Opening port 6379: bind: Address already in use
+---- ps ax | grep bcat ---- service elasticsearch status ---- touch monitorBcat/Airasia ---- touch monitorBcat/Lion ---- service elasticsearch start ---- forever list ---- cd ../../../scrapePluto && npm run start:sr ---- cd ../../../scrapeAirbinder && npm run start:aa ---- cd ../../../scrapeAirbinder && npm run start:li ---- cd ../../../scrapePluto && npm run start:pluto ---- {"elasticsearch":"OFF","daemon_garuda":"ON","daemon_citilink":"ON","daemon_express":"ON","daemon_sriwijaya":"OFF","daemon_airasia":"OFF","daemon_lion":"OFF","bin/www abdul":"OFF","time":"23-1-2015 19:57:58"}

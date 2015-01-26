@@ -1,0 +1,33 @@
+Fri, 23 Jan 2015 06:51:28 GMT pluto:libs:queue Listening to redis-server localhost:6379:a
+Fri, 23 Jan 2015 06:51:28 GMT pluto:libs:elasticsearch Connected to elasticsearch localhost:9200
+Fri, 23 Jan 2015 06:51:35 GMT pluto:daemon:sriwijaya Express server listening on port 9019. for sriwijaya request.
+Release all 0 sriwijaya accounts id
+BLOCKED FOR 54ms
+BLOCKED FOR 100ms
+
+events.js:72
+        throw er; // Unhandled 'error' event
+              ^
+TypeError: Uncaught, unspecified "error" event.
+    at TypeError (<anonymous>)
+    at Queue.emit (events.js:74:15)
+    at Worker.<anonymous> (/opt/lampp/htdocs/projectScrape/scrapePluto/node_modules/kue/lib/kue.js:240:18)
+    at Worker.emit (events.js:98:17)
+    at Worker.error (/opt/lampp/htdocs/projectScrape/scrapePluto/node_modules/kue/lib/queue/worker.js:91:10)
+    at /opt/lampp/htdocs/projectScrape/scrapePluto/node_modules/kue/lib/queue/worker.js:67:23
+    at Command.callback (/opt/lampp/htdocs/projectScrape/scrapePluto/node_modules/kue/lib/queue/worker.js:249:20)
+    at RedisClient.flush_and_error (/opt/lampp/htdocs/projectScrape/scrapePluto/node_modules/kue/node_modules/redis/index.js:160:29)
+    at RedisClient.connection_gone (/opt/lampp/htdocs/projectScrape/scrapePluto/node_modules/kue/node_modules/redis/index.js:474:10)
+    at Socket.<anonymous> (/opt/lampp/htdocs/projectScrape/scrapePluto/node_modules/kue/node_modules/redis/index.js:103:14)
+error: Forever detected script exited with code: 8
+error: Script restart attempt #1
+Fri, 23 Jan 2015 14:56:05 GMT pluto:libs:queue Listening to redis-server localhost:6379:a
+Fri, 23 Jan 2015 14:56:05 GMT pluto:libs:elasticsearch Connected to elasticsearch localhost:9200
+Mon, 26 Jan 2015 03:26:52 GMT pluto:libs:queue Listening to redis-server localhost:6379:a
+Mon, 26 Jan 2015 03:26:52 GMT pluto:libs:elasticsearch Connected to elasticsearch localhost:9200
+Mon, 26 Jan 2015 03:27:05 GMT pluto:daemon:sriwijaya Express server listening on port 9019. for sriwijaya request.
+Release all 0 sriwijaya accounts id
+BLOCKED FOR 11ms
+BLOCKED FOR 16ms
+BLOCKED FOR 16ms
+error: Forever detected script exited with code: null
