@@ -23,54 +23,62 @@ declare -a airline=("Garuda" "Citilink" "Express" "Sriwijaya" "Airasia" "Lion")
 
 # deklarasi nama file untuk start bcat
 # jika bukan server Pluto maka variable Pluto dihapus saja
-declare -a start_bcat=("MonitorAllServer" "Pluto")
+declare -a logfile=("MonitorAllServer" "Pluto")
 
 # menambahkan variable airline ke start_bcat
 arraylength=${#airline[@]}
 for(( i=0; i<${arraylength}; i++ ))
 do
-    start_bcat[i+2]=${airline[i]}
+    logfile[i+2]=${airline[i]}
 done
 
 # lakukan infinity loop untuk cek server
 while [ true ]
 do
+    date;
 
     # jalankan cekServer.js
     # membuat file di monitorBcat jika ada port yang mati
-    echo `node ${basePath}/cekServer.js`;
+    echo "node ${basePath}/cekServer.js";
+    node ${basePath}/cekServer.js;
 
     sleep 5;
+
+    cek_bcat="ls ${path_bcat}";
+    echo ${cek_bcat};
+    cek_bcat=`${cek_bcat}`;
+    start_bcat=(${cek_bcat// / });
 
     # lakukan pengecekan dan restart bcat bila mati
     arraylength=${#start_bcat[@]}
     for(( i=0; i<${arraylength}; i++ ))
     do
+        echo ${cek_bcat};
         start="${path_bcat}/${start_bcat[i]}"
         echo "cek -f" ${start};
         if [ -f "${start}" ]
         then
-            if [ ${start_bcat[i]} == "Garuda" ]
+            cek_bcat=${start_bcat[i]};
+            airline=$(echo ${cek_bcat} | cut -d. -f1);
+            port=$(echo ${cek_bcat} | cut -d. -f2);
+
+            echo "cek airline ${airline} port ${port}";
+
+            # cek tail apakah aktif
+            cek_tail=`ps ax | grep tail\ -f\ ${path_log}/${airline}.log | grep -o '^[ ]*[0-9]*' | tr -d ' '`;
+            arrIN=(${cek_tail// / });
+
+            # cek apakah script sudah dijalankan
+            if [ -n "${arrIN[1]}" ]
             then
-                tail -f ${path_log}/${start_bcat[i]}.log | bcat --port ${port_Garuda} &
-            elif [ ${start_bcat[i]} == "Citilink" ]
+                # stop process
+                kill ${arrIN[0]};
+                echo "kill ${arrIN[0]}";
+            fi
+
+            if [ -n "${port}" ]
             then
-                tail -f ${path_log}/${start_bcat[i]}.log | bcat --port ${port_Citilink} &
-            elif [ ${start_bcat[i]} == "Express" ]
-            then
-                tail -f ${path_log}/${start_bcat[i]}.log | bcat --port ${port_Express} &
-            elif [ ${start_bcat[i]} == "Sriwijaya" ]
-            then
-                tail -f ${path_log}/${start_bcat[i]}.log | bcat --port ${port_Sriwijaya} &
-            elif [ ${start_bcat[i]} == "Airasia" ]
-            then
-                tail -f ${path_log}/${start_bcat[i]}.log | bcat --port ${port_Airasia} &
-            elif [ ${start_bcat[i]} == "MonitorAllServer" ]
-            then
-                tail -f ${path_log}/${start_bcat[i]}.log | bcat --port ${port_MonitorAllServer} &
-            elif [ ${start_bcat[i]} == "Pluto" ]
-            then
-                tail -f ${path_log}/${start_bcat[i]}.log | bcat --port ${port_Pluto} &
+                tail -f ${path_log}/${airline}.log | bcat --port ${port} &
             fi
             echo `rm ${start}`;
         fi
@@ -90,7 +98,7 @@ do
         for(( i=0; i<${arraylength}; i++ ))
         do
             # Reset size log file
-            start_bcat[i+2]=${airline[i]}
+            logfile[i+2]=${airline[i]}
             echo `echo "" > ${path_log}"/${airline[i]}.log";`
 
             # Remove file err.log
@@ -107,7 +115,7 @@ do
     # cek redis
     printf "ps ax | grep redis\n\n";
     cek_redis=`ps ax | grep redis`;
-    if [[ "$cek_redis" != *"redis-server *:6379"* ]]
+    if [[ "$cek_redis" != *"redis-server"* ]]
     then
         echo "Redis OFF and run auto START";
         redis-server;

@@ -45,4 +45,8 @@
 		"port": 11010,
 		"type": "db"
 	},
+	"path": {
+		"Pluto": "/opt/lammp/htdocs/projectScrape/scrapePluto/",
+		"Airbinder": "/opt/lammp/htdocs/projectScrape/scrapeAirbinder/"
+	}
 }

@@ -9,7 +9,7 @@
 
 # deklarasi variable path
 path=`dirname $(readlink -f ./startMonitor.sh)`;
-start_monitor="${path}/monitorAllServer.sh > ${path}/plutoForever/log/MonitorAllServer.log";
+start_monitor="./monitorAllServer.sh > ${path}/log/MonitorAllServer.log";
 
 # cek prosess di server
 a=`ps ax | grep monitorAllServer.sh | grep -o '^[ ]*[0-9]*' | tr -d ' '`
@@ -21,7 +21,8 @@ then
 	if [ -z ${arrIN[1]} ]
 	then
 		echo "starting monitorAllServer.sh!";
-		echo `${start_monitor}`
+		echo "${start_monitor} &";
+		./monitorAllServer.sh > ${path}/log/MonitorAllServer.log &
 	else
 		echo "script is running in ps ${arrIN[0]}";
 	fi
@@ -32,6 +33,7 @@ then
 		echo "script not running!";
 	else
 		kill ${arrIN[0]}
+		echo "kill ${arrIN[0]}";
 		echo "stop monitor!";
 	fi
 elif  [ "$1" == "restart" ]
@@ -42,11 +44,13 @@ then
 	else
 		# stop process
 		kill ${arrIN[0]}
+		echo "kill ${arrIN[0]}";
 		echo "stop monitor!";
 
 		# start process
 		echo "starting monitorAllServer.sh!";
-		echo `${start_monitor}`
+		echo "${start_monitor} &";
+		./monitorAllServer.sh > ${path}/log/MonitorAllServer.log &
 	fi
 else
 	echo "not supported method";

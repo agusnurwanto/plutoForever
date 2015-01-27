@@ -1,24 +1,26 @@
 var exec = require('exec');
 var fs = require('fs');
+var mkdirp = require('mkdirp');
 var path = 'monitorBcat/';
+var log = 'log/';
 var dir = __dirname;
 var configs = JSON.parse(fs.readFileSync(dir+'/config_monitor.json', 'utf8').trim());
-var data = {};
-var folderPluto = 'scrapePluto';
-var folderAirbinder = 'scrapeAirbinder';
+var path_pluto = configs.path.Pluto;
+var path_airbinder = configs.path.Airbinder;
+
+if (path_pluto && !fs.existsSync(path_pluto)) {
+	return clog(path_pluto+': No such file or directory');
+}else if (path_airbinder && !fs.existsSync(path_airbinder)) {
+	return clog(path_airbinder+': No such file or directory');
+}
 
 /**
- * melakukan pengecekan port bcat
- * membuat file untuk start bcat
- * @param  {string} stdout  
+ * cek or mkdir
+ * @param  {url}
+ * @return {function}
  */
-cexec('ps ax | grep bcat', function (error, stdout, stderr) {
-	for(var i in configs){
-		if(stdout.indexOf(configs[i].port) == '-1'){
-			cexec('touch monitorBcat/'+i,function (error, stdout, stderr) {});
-		}
-	}
-});
+mkdirp(dir+'/'+path, function(err) {});
+mkdirp(dir+'/'+log, function(err) {});
 
 /**
  * cek apakah ini server Pluto
@@ -27,7 +29,7 @@ cexec('ps ax | grep bcat', function (error, stdout, stderr) {
  * @return {bolean}
  */
 if(!configs.Pluto){
-	cekForever(data, false);
+	cekForever(false);
 	return true;
 }
 
@@ -37,12 +39,12 @@ if(!configs.Pluto){
  */
 cexec('service elasticsearch status', function (error, stdout, stderr) {
 	if(stdout.indexOf('elasticsearch is running') != '-1'){
-		data['elasticsearch'] = 'ON';
+		clog('elasticsearch = ON');
 	}else{
-		data['elasticsearch'] = 'OFF';
+		clog('elasticsearch = OFF');
 		cexec('service elasticsearch start', function (error, stdout, stderr) {});
 	}
-	cekForever(data, true);
+	cekForever(true);
 	return true;
 });
 
@@ -52,7 +54,7 @@ cexec('service elasticsearch status', function (error, stdout, stderr) {
  * @return {bolean}    
  */
 function clog(log){
-	console.log('----',log,'\n');
+	console.log('----',log);
 }
 
 /**
@@ -73,39 +75,54 @@ function cexec(method, cb){
  * @param  {bolean} db   bolean apakah ini server elastic atau bukan
  * @return {bolean}      
  */
-function cekForever(data, db){
+function cekForever(db){
 	cexec('forever list', function (error, stdout, stderr) {
 		for(var i in configs){
 			if(configs[i].type=='airline'){
 				var daemon = 'daemon_'+i.toLowerCase();
 				if(stdout.indexOf(daemon) != '-1'){
-						data[daemon] = 'ON';
+						clog(daemon+' = ON');
 				}else{
-					data[daemon] = 'OFF';
+					clog(daemon+' = OFF');
 					if(i=='Lion'||i=='Airasia')
-						cexec('cd ../../../'+ folderAirbinder +' && '+configs[i].start, function () {});
+						cexec('cd '+ path_airbinder +' && '+configs[i].start, function () {});
 					else
-						cexec('cd ../../../'+ folderPluto +' && '+configs[i].start, function () {});
+						cexec('cd '+ path_pluto +' && '+configs[i].start, function () {});
 				}
 			}
 		}
 		if(db){
-			if(stdout.indexOf('bin/www abdul') != '-1'){
-				data['bin/www abdul'] = 'ON';
+			if(stdout.indexOf('bin/www') != '-1'){
+				clog('bin/www = ON');
 			}else{
-				data['bin/www abdul'] = 'OFF';
-				cexec('cd ../../../'+ folderPluto +' && npm run start:pluto', function () {});
+				clog('bin/www = OFF');
+				cexec('cd '+ path_pluto +' && npm run start:pluto', function () {});
 			}
 		}
-		var a = new Date(),
-			y = a.getFullYear(),
-			m = a.getMonth()+1,
-			d = a.getDate(),
-			h = a.getHours(),
-			i = a.getMinutes(),
-			s = a.getSeconds();
-		data['time'] = d+'-'+m+'-'+y+' '+h+':'+i+':'+s;
 
-		clog(JSON.stringify(data));
+		setTimeout(function(){
+			/**
+			 * melakukan pengecekan port bcat
+			 * membuat file untuk start bcat
+			 * @param  {string} stdout  
+			 */
+			cexec('ps ax | grep bcat', function (error, stdout, stderr) {
+				var cek = false;
+				for(var i in configs){
+					(function(i){
+						if(configs[i].type != 'path'){
+							if(stdout.indexOf(configs[i].port) == '-1'){
+								cexec('touch monitorBcat/'+ configs[i].name +'.'+ configs[i].port,function (error, stdout, stderr) {});
+								cek = true;
+								clog("bcat "+configs[i].name+" port "+configs[i].port+" OFF");
+							}
+						}
+					})(i);
+				}
+				if(cek == false){
+					clog("All bcat = ON");
+				}
+			});
+		},1000 );
 	})
 }
