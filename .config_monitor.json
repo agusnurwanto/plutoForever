@@ -46,7 +46,8 @@
 		"type": "db"
 	},
 	"path": {
-		"Pluto": "/opt/lammp/htdocs/projectScrape/scrapePluto/",
-		"Airbinder": "/opt/lammp/htdocs/projectScrape/scrapeAirbinder/"
+		"Pluto": "/opt/pluto/",
+		"Airbinder": "/opt/airbinder",
+		"type": "path"
 	}
 }
