@@ -1,0 +1,25 @@
+{
+  "name": "plutoForever",
+  "version": "1.0.0",
+  "description": "cek forever node",
+  "main": "cekServer.js",
+  "scripts": {
+    "test": "cd tests && DEBUG=*-mocha mocha *Spec.js -R spec",
+    "docs": "jsdox --output documentations *.js modules/*.js",
+    "testdocs": "cd tests && mocha *Spec.js -R markdown > ../TEST.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agusnurwanto/plutoForever.git"
+  },
+  "author": "agus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agusnurwanto/plutoForever/issues"
+  },
+  "homepage": "https://github.com/agusnurwanto/plutoForever",
+  "dependencies": {
+    "exec": "^0.1.3",
+    "mkdirp": "^0.5.0"
+  }
+}
