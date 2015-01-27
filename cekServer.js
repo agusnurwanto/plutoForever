@@ -4,7 +4,7 @@ var mkdirp = require('mkdirp');
 var path = 'monitorBcat/';
 var log = 'log/';
 var dir = __dirname;
-var configs = JSON.parse(fs.readFileSync(dir+'/config_monitor.json', 'utf8').trim());
+var configs = JSON.parse(fs.readFileSync('../../config_monitor.json', 'utf8').trim());
 var path_pluto = configs.path.Pluto;
 var path_airbinder = configs.path.Airbinder;
 
