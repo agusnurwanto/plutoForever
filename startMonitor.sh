@@ -9,7 +9,7 @@
 
 # deklarasi variable path
 path=`dirname $(readlink -f ./startMonitor.sh)`;
-start_monitor="./monitorAllServer.sh > ${path}/log/MonitorAllServer.log";
+start_monitor="./monitorAllServer.sh > log/MonitorAllServer.log";
 
 # cek prosess di server
 a=`ps ax | grep monitorAllServer.sh | grep -o '^[ ]*[0-9]*' | tr -d ' '`
