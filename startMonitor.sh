@@ -22,7 +22,7 @@ then
 	then
 		echo "starting monitorAllServer.sh!";
 		echo "${start_monitor} &";
-		./monitorAllServer.sh > ${path}/log/MonitorAllServer.log &
+		./monitorAllServer.sh > log/MonitorAllServer.log &
 	else
 		echo "script is running in ps ${arrIN[0]}";
 	fi
