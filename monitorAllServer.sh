@@ -6,21 +6,11 @@ basePath=`dirname $(readlink -f ./startMonitor.sh)`;
 path_bcat=${basePath}"/monitorBcat";
 path_log=${basePath}"/log";
 
-# deklarasi array maskapai
-# disesuaikan dengan server yang dipakai
-# biarkan kosong jika ga pakai server airline
-declare -a log=("Garuda" "Citilink" "Express" "Sriwijaya" "Airasia" "Lion")
+export SCRAPE_HOST=128.199.80.99
 
 # deklarasi nama file untuk start bcat
 # jika bukan server Pluto maka variable Pluto dihapus saja
-declare -a logfile=("MonitorAllServer" "Pluto")
-
-# menambahkan variable airline ke start_bcat
-arraylength=${#log[@]}
-for(( i=0; i<${arraylength}; i++ ))
-do
-    logfile[i+2]=${log[i]}
-done
+declare -a logfile=("MonitorAllServer" "Pluto" "Garuda" "Citilink" "Express" "Sriwijaya" "Airasia" "Lion")
 
 # lakukan infinity loop untuk cek server
 while [ true ]
@@ -84,16 +74,15 @@ do
     # Reset size log file bila lebih dari 100mb
     if [ "$size2" -gt 100000 ]
     then
-        arraylength=${#log[@]}
+        arraylength=${#logfile[@]}
         for(( i=0; i<${arraylength}; i++ ))
         do
             # Reset size log file
-            logfile[i+2]=${log[i]}
-            echo "" > ${path_log}"/${airline[i]}.log";
-            echo "echo \"\" > ${path_log}\"/${airline[i]}.log\"";
+            echo "" > ${path_log}"/${logfile[i]}.log";
+            echo "echo \"\" > ${path_log}\"/${logfile[i]}.log\"";
 
             # Remove file err.log
-            err_log="${path_log}/${airline[i]}.err.log";
+            err_log="${path_log}/${logfile[i]}.err.log";
             if [ -f "$err_log" ]
             then
                 echo `rm "$err_log";`
@@ -109,7 +98,7 @@ do
     if [[ "$cek_redis" != *"redis-server"* ]]
     then
         echo "Redis OFF and run auto START";
-        redis-server;
+        redis-server &;
     fi
 
     sleep ${tm};
