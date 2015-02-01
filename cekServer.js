@@ -22,7 +22,7 @@ if (path_pluto && !fs.existsSync(path_pluto)) {
 mkdirp(dir+'/'+path, function(err) {});
 mkdirp(dir+'/'+log, function(err) {});
 
-if(process.env.ROUTE_MONITOR && process.env.ROUTE_MONITOR=='SCRAPE_HOST'){}
+if(process.env.ROUTE_MONITOR && process.env.ROUTE_MONITOR=='SCRAPE_HOST'){
 	if(!process.env.SCRAPE_HOST){
 		cexec('echo "'+configs.config.SCRAPE_HOST+'" > SCRAPE_HOST',function (error, stdout, stderr) {});
 	}
