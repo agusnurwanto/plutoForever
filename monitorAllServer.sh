@@ -25,7 +25,8 @@ do
     if [ -f "${cek_scrape_host}" ]
     then
         host=`cat ${cek_scrape_host}`;
-        echo `export SCRAPE_HOST=${host}`;
+        export SCRAPE_HOST=${host};
+        echo "export SCRAPE_HOST=${host}";
     fi
 
     sleep ${tm};
