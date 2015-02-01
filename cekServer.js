@@ -22,6 +22,10 @@ if (path_pluto && !fs.existsSync(path_pluto)) {
 mkdirp(dir+'/'+path, function(err) {});
 mkdirp(dir+'/'+log, function(err) {});
 
+if(!process.env.SCRAPE_HOST){
+	cexec('echo "'+configs.config.SCRAPE_HOST+'" > SCRAPE_HOST',function (error, stdout, stderr) {});
+}
+
 /**
  * cek apakah ini server Pluto
  * jika bukan hanya cek forever saja!
@@ -110,7 +114,7 @@ function cekForever(db){
 				var cek = false;
 				for(var i in configs){
 					(function(i){
-						if(configs[i].type != 'path'){
+						if(configs[i].type!='path' || configs[i].type!='config'){
 							if(stdout.indexOf(configs[i].port) == '-1'){
 								cexec('touch monitorBcat/'+ configs[i].name +'.'+ configs[i].port,function (error, stdout, stderr) {});
 								cek = true;

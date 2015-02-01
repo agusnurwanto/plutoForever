@@ -49,5 +49,9 @@
 		"Pluto": "/opt/pluto/",
 		"Airbinder": "/opt/airbinder",
 		"type": "path"
+	},
+	"config": {
+		"SCRAPE_HOST": "localhost",
+		"type": "config"
 	}
 }

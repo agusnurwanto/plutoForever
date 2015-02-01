@@ -6,8 +6,6 @@ basePath=`dirname $(readlink -f ./startMonitor.sh)`;
 path_bcat=${basePath}"/monitorBcat";
 path_log=${basePath}"/log";
 
-export SCRAPE_HOST=128.199.80.99
-
 # deklarasi nama file untuk start bcat
 # jika bukan server Pluto maka variable Pluto dihapus saja
 declare -a logfile=("MonitorAllServer" "Pluto" "Garuda" "Citilink" "Express" "Sriwijaya" "Airasia" "Lion")
@@ -21,6 +19,14 @@ do
     # membuat file di monitorBcat jika ada port yang mati
     echo "node ${basePath}/cekServer.js";
     node ${basePath}/cekServer.js;
+
+    # cek SCRAPE_HOST
+    cek_scrape_host="${basePath}/SCRAPE_HOST"
+    if [ -f "${cek_scrape_host}" ]
+    then
+        host=`cat ${cek_scrape_host}`;
+        echo `export SCRAPE_HOST=${host}`;
+    fi
 
     sleep ${tm};
 
@@ -98,7 +104,7 @@ do
     if [[ "$cek_redis" != *"redis-server"* ]]
     then
         echo "Redis OFF and run auto START";
-        redis-server &;
+        redis-server &
     fi
 
     sleep ${tm};
