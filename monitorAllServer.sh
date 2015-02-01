@@ -10,6 +10,20 @@ path_log=${basePath}"/log";
 # jika bukan server Pluto maka variable Pluto dihapus saja
 declare -a logfile=("MonitorAllServer" "Pluto" "Garuda" "Citilink" "Express" "Sriwijaya" "Airasia" "Lion")
 
+# cek SCRAPE_HOST
+ROUTE_MONITOR=SCRAPE_HOST node ${basePath}/cekServer.js;
+cek_scrape_host="${basePath}/SCRAPE_HOST"
+echo "-f ${cek_scrape_host}"
+if [ -f "${cek_scrape_host}" ]
+then
+    forever stopall;
+    echo "forever stopall";
+    host=`cat ${cek_scrape_host}`;
+    export SCRAPE_HOST=${host};
+    echo "export SCRAPE_HOST=${host}";
+    rm ${cek_scrape_host};
+fi
+
 # lakukan infinity loop untuk cek server
 while [ true ]
 do
@@ -19,15 +33,6 @@ do
     # membuat file di monitorBcat jika ada port yang mati
     echo "node ${basePath}/cekServer.js";
     node ${basePath}/cekServer.js;
-
-    # cek SCRAPE_HOST
-    cek_scrape_host="${basePath}/SCRAPE_HOST"
-    if [ -f "${cek_scrape_host}" ]
-    then
-        host=`cat ${cek_scrape_host}`;
-        export SCRAPE_HOST=${host};
-        echo "export SCRAPE_HOST=${host}";
-    fi
 
     sleep ${tm};
 
